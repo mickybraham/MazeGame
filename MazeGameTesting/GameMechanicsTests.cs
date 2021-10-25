@@ -23,7 +23,7 @@ namespace MazeGameTesting
             Assert.AreEqual(MethodAnswer, ExpectedAnswer);
 
         }
-        [Test]
+        //[Test]
         //public void ResetCursorTest()
         //{
         //    string[,] grid = LevelCompiler.CompileFileToArray("C:/Users/micky/source/repos/MazeGame/MazeGameTesting/TestLevel.txt");
