@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MazeGame": {
+      "commandName": "Project",
+      "workingDirectory": "$(MazeGame)"
+    }
+  }
+}

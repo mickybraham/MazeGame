@@ -18,13 +18,13 @@ namespace MazeGame
         public void Start()
         {
             //Create grids
-            string[,] grid = LevelCompiler.CompileFileToArray("level1.txt");
-            string[,] grid2 = LevelCompiler.CompileFileToArray("C:/Users/micky/source/repos/MazeGame/MazeGame/Level2.txt");
-            string[,] grid3 = LevelCompiler.CompileFileToArray("C:/Users/micky/source/repos/MazeGame/MazeGame/Level3.txt");
+            string[,] grid = LevelCompiler.CompileFileToArray("../../../level1.txt");
+            string[,] grid2 = LevelCompiler.CompileFileToArray("../../../level2.txt");
+            string[,] grid3 = LevelCompiler.CompileFileToArray("../../../level3.txt");
             //string[,] grid4 = LevelCompiler.CompileFileToArray("level4.txt");
 
             //Create Player
-            NewPlayer = new Player(2, 0);
+            NewPlayer = new Player(2, 0); 
             //x = 2;
 
             //Create Worlds
