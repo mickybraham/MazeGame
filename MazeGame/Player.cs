@@ -5,12 +5,13 @@ using static System.Console;
 
 namespace MazeGame
 {
-    class Player
+    public class Player
     {
         public int X { get; set; }
         public int Y { get; set; }
         private string PlayerCharacter;
         private ConsoleColor PlayerColour;
+        public int coins;
 
         public Player(int initialX, int initialY)
         {
@@ -18,6 +19,7 @@ namespace MazeGame
             Y = initialY;
             PlayerCharacter = "0";
             PlayerColour = ConsoleColor.Red;
+            coins = 0;
         }
 
         public void Draw()
@@ -27,6 +29,34 @@ namespace MazeGame
             Write(PlayerCharacter);
             ResetColor();
         }
+        public void ResetCursor(int newX,int newY)
+        {
+            X = newX;
+            Y = newY;
+            SetCursorPosition(X, Y);
+        }
+        public int GetCoinValue()
+        {
+            return coins;
+        }
+        //just added these 
+        public int AddGold()
+        {
+            coins = coins + 50;
+            return coins;
+        }
+        public int RemoveGold()
+        {
+            coins = coins - 25;
+            return coins;
+        }
+
+        public string GetPlayerCharacter()
+        {
+            return PlayerCharacter;
+        }
+
+
 
     }
 }

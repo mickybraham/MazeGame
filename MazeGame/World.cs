@@ -5,9 +5,9 @@ using static System.Console;
 
 namespace MazeGame
 {
-    class World
+    public class World
     {
-        private string[,] Grid;
+        public string[,] Grid;
         private int Rows;
         private int Columns;
 
@@ -44,7 +44,7 @@ namespace MazeGame
                 return false;
             }
             // check valid position
-            return Grid[y, x] == " " || Grid[y, x] == "X";
+            return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "B" || Grid[y, x] == "C" || Grid[y, x] == "E" || Grid[y, x] == "D" || Grid[y, x] == "F" || Grid[y, x] == "G";
         }
     }
 }

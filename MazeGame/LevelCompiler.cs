@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 namespace MazeGame
 {
-    class LevelCompiler
+    public class LevelCompiler
     {
         public static string[,] CompileFileToArray(string filepath)
         {
