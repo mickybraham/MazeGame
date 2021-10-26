@@ -11,6 +11,7 @@ namespace MazeGame
         private Player NewPlayer;
         public int x;
         int coins;
+
         //create lists
         List<World> worlds = new List<World>();
         List<Challenge> challenges = new List<Challenge>();
@@ -47,12 +48,12 @@ namespace MazeGame
             Challenge C2 = new Challenge("If 7 becomes 13 and 11 becomes 21, what does 16 become?", "31");
             Challenge C3 = new Challenge("What is next in this sequence: 2, 5, 9, 14", "20");
             Challenge C4 = new Challenge("How many sides does an decagon have", "10");
+
             //Add challenges to list
             challenges.Add(C1);
             challenges.Add(C2);
             challenges.Add(C3);
             challenges.Add(C4);
-
             runGame();
         }
         private void Instructions()
@@ -63,8 +64,9 @@ namespace MazeGame
             Console.WriteLine("2. Take on Challenges and explore by navigating to letters marked on the map\n");
             Console.WriteLine("3. You will receive gold for successfully answering a challenge\n");
             Console.WriteLine("4. If you answer incorrectly be prepared to lose your gold\n");
-            Console.WriteLine("6. To finish the game find E\n");
-            Console.WriteLine("7. The aim of the game is to finish with as much gold as possible\n");
+            Console.WriteLine("5. To finish the game find E\n");
+            Console.WriteLine("6. The aim of the game is to finish with as much gold as possible\n");
+            Console.WriteLine("7. To restart the game press R\n");
         }
         private void Login()
         {
@@ -81,7 +83,13 @@ namespace MazeGame
             Clear();
             Console.WriteLine("You have exited the maze");
             Console.WriteLine($"You managed to collect {NewPlayer.GetCoinValue()} gold, Well done.");
-            Console.WriteLine("Press any key to finish");
+            Console.WriteLine("Press Y to play again, N to exit");
+            string yn = Console.ReadLine();
+            if (yn == "Y")
+            {
+                Start();
+            }
+ 
             ReadKey(true);
         }
 
@@ -121,10 +129,15 @@ namespace MazeGame
                         NewPlayer.X += 1;
                     }
                     break;
+                case ConsoleKey.R:
+                    Clear();
+                    Start();
+                    break;
                 default:
                     break;
             }
         }
+
         public void DisplayChallenge()
         {
             //Ask Challenge Question and take userinput
@@ -136,7 +149,7 @@ namespace MazeGame
                 NewPlayer.AddGold();
                 Console.WriteLine($"You have {NewPlayer.GetCoinValue()} Gold");
                 challenges.RemoveAt(0);
-                //y = y + 1;
+                
             }
             else
             {
@@ -144,7 +157,7 @@ namespace MazeGame
                 NewPlayer.RemoveGold();
                 Console.WriteLine($"You have {NewPlayer.GetCoinValue()} Gold");
                 challenges.RemoveAt(0);
-                //y = y + 1;
+                
             }
         }
         private void runGame()
@@ -164,7 +177,7 @@ namespace MazeGame
                 string elementAtPlayerPos = worlds[x].GetElementAt(NewPlayer.X, NewPlayer.Y);
 
                 //When player reaches X 
-                if (elementAtPlayerPos == "X" && challenges.Count == 2 || challenges.Count == 0)
+                if (elementAtPlayerPos == "X" && (challenges.Count == 2 || challenges.Count == 0))
                 {
                     x = x + 1;
                     NewPlayer.ResetCursor(1, 0);
