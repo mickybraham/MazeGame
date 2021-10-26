@@ -10,12 +10,14 @@ namespace MazeGame
         public string[,] Grid;
         private int Rows;
         private int Columns;
+        int challengeCount;
 
         public World(string[,] grid)
         {
             Grid = grid;
             Rows = Grid.GetLength(0);
             Columns = Grid.GetLength(1);
+            challengeCount = 0;
         }
 
         public void Draw()
@@ -45,6 +47,22 @@ namespace MazeGame
             }
             // check valid position
             return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "B" || Grid[y, x] == "C" || Grid[y, x] == "E" || Grid[y, x] == "D" || Grid[y, x] == "F" || Grid[y, x] == "G";
+        }
+        public int ChallengeCounter()
+        {
+            challengeCount = challengeCount + 1;
+            return challengeCount;
+        }
+        public bool LevelComplete()
+        {
+            if (challengeCount == 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

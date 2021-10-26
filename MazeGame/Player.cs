@@ -55,8 +55,15 @@ namespace MazeGame
         {
             return PlayerCharacter;
         }
-
-
-
+        public int GetCurrentPositionX(int currentX)
+        {
+            X = currentX;
+            return X;
+        }
+        public int GetCurrentPositionY(int currentY)
+        {
+            Y = currentY;
+            return Y;
+        }
     }
 }

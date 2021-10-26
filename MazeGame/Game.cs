@@ -197,7 +197,7 @@ namespace MazeGame
                     }
 
                 }
-                //When player reaches E
+                //When player reaches Exit
                 if (elementAtPlayerPos == "E" && challenges.Count == 0)
                 {
                     break;
@@ -210,7 +210,7 @@ namespace MazeGame
                     NewPlayer.ResetCursor(44, 20);
                 }
 
-                //When player reaches B
+                //When player reaches Back
                 if (elementAtPlayerPos == "B")
                 {
                     x = x - 1;
@@ -224,45 +224,19 @@ namespace MazeGame
                     }
                 }
 
-                //When player reaches C
+                //When player reaches Challenge
                 if (elementAtPlayerPos == "C")
                 {
+                    int StoredX = NewPlayer.GetCurrentPositionX(NewPlayer.X);
+                    int StoredY = NewPlayer.GetCurrentPositionY(NewPlayer.Y);
                     NewPlayer.ResetCursor(0, 21);
                     DisplayChallenge();
                     System.Threading.Thread.Sleep(600);
-                    worlds[x].Grid[19,10] = " ";
-                    NewPlayer.ResetCursor(9, 19);
+                    worlds[x].Grid[StoredY,StoredX] = " ";
+                    NewPlayer.ResetCursor(StoredX, StoredY);
                 }
 
-                //When player reaches D
-                if (elementAtPlayerPos == "D")
-                {
-                    NewPlayer.ResetCursor(0, 21);
-                    DisplayChallenge();
-                    System.Threading.Thread.Sleep(600);
-                    worlds[x].Grid[1, 43] = " ";
-                    NewPlayer.ResetCursor(42, 1);
-                }
 
-                //When player reaches F
-                if (elementAtPlayerPos == "F")
-                {
-                    NewPlayer.ResetCursor(0, 22);
-                    DisplayChallenge();
-                    System.Threading.Thread.Sleep(600);
-                    worlds[x].Grid[7, 44] = " ";
-                    NewPlayer.ResetCursor(44, 7);
-                }
-
-                //When player reaches G
-                if (elementAtPlayerPos == "G")
-                {
-                    NewPlayer.ResetCursor(0, 22);
-                    DisplayChallenge();
-                    System.Threading.Thread.Sleep(600);
-                    worlds[x].Grid[19, 5] = " ";
-                    NewPlayer.ResetCursor(5, 19);
-                }
                 //Give the console a chance to render
                 System.Threading.Thread.Sleep(5);
                 
