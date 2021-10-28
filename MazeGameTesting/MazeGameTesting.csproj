@@ -17,4 +17,10 @@
     <ProjectReference Include="..\MazeGame\MazeGame.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestLevel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

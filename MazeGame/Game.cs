@@ -40,9 +40,9 @@ namespace MazeGame
             worlds.Add(world3);
             //worlds.Add(world4);
 
-            var random = new Random();
-            this.x = random.Next(worlds.Count);
-
+            //var random = new Random();
+            //this.x = random.Next(worlds.Count);
+            x = 1;
             //Create challenge objects 
             Challenge C1 = new Challenge("How many prime numbers are there between 0 & 50", "15");
             Challenge C2 = new Challenge("If 7 becomes 13 and 11 becomes 21, what does 16 become?", "31");
@@ -60,9 +60,9 @@ namespace MazeGame
         {
             Console.WriteLine("Welcome to Michael's Maze game");
             Console.WriteLine("\n\nInstructions:\n\n");
-            Console.WriteLine("1. Use the arrows keys to navigate the maze\n");
+            Console.WriteLine("1. Use the arrow keys to navigate the maze\n");
             Console.WriteLine("2. Take on Challenges and explore by navigating to letters marked on the map\n");
-            Console.WriteLine("3. You will receive gold for successfully answering a challenge\n");
+            Console.WriteLine("3. You will receive gold for successfully answering a challenge 'C'\n");
             Console.WriteLine("4. If you answer incorrectly be prepared to lose your gold\n");
             Console.WriteLine("5. To finish the game find E\n");
             Console.WriteLine("6. The aim of the game is to finish with as much gold as possible\n");
@@ -149,6 +149,7 @@ namespace MazeGame
                 NewPlayer.AddGold();
                 Console.WriteLine($"You have {NewPlayer.GetCoinValue()} Gold");
                 challenges.RemoveAt(0);
+                worlds[x].ChallengeComplete();
                 
             }
             else
@@ -157,7 +158,8 @@ namespace MazeGame
                 NewPlayer.RemoveGold();
                 Console.WriteLine($"You have {NewPlayer.GetCoinValue()} Gold");
                 challenges.RemoveAt(0);
-                
+                worlds[x].ChallengeComplete();
+
             }
         }
         private void runGame()
@@ -177,12 +179,12 @@ namespace MazeGame
                 string elementAtPlayerPos = worlds[x].GetElementAt(NewPlayer.X, NewPlayer.Y);
 
                 //When player reaches X 
-                if (elementAtPlayerPos == "X" && (challenges.Count == 2 || challenges.Count == 0))
+                if (elementAtPlayerPos == "X" && worlds[x].TotalCompleteChallenges() == worlds[x].RoomChallengeCount)
                 {
                     x = x + 1;
                     NewPlayer.ResetCursor(1, 0);
                 }
-                if (elementAtPlayerPos == "X" && challenges.Count >= 3)
+                else if (elementAtPlayerPos == "X" && worlds[x].TotalCompleteChallenges() < worlds[x].RoomChallengeCount)
                 {
                     NewPlayer.ResetCursor(0, 21);
                     Console.WriteLine("You must complete more challenges to pass please explore further");
@@ -227,8 +229,8 @@ namespace MazeGame
                 //When player reaches Challenge
                 if (elementAtPlayerPos == "C")
                 {
-                    int StoredX = NewPlayer.GetCurrentPositionX(NewPlayer.X);
-                    int StoredY = NewPlayer.GetCurrentPositionY(NewPlayer.Y);
+                    int StoredX = NewPlayer.X;
+                    int StoredY = NewPlayer.Y;
                     NewPlayer.ResetCursor(0, 21);
                     DisplayChallenge();
                     System.Threading.Thread.Sleep(600);

@@ -10,14 +10,16 @@ namespace MazeGame
         public string[,] Grid;
         private int Rows;
         private int Columns;
-        int challengeCount;
+        int challengeComplete;
+        public int RoomChallengeCount;
 
         public World(string[,] grid)
         {
             Grid = grid;
             Rows = Grid.GetLength(0);
             Columns = Grid.GetLength(1);
-            challengeCount = 0;
+            challengeComplete = 0;
+            RoomChallengeCount = ChallengesInRoom();
         }
 
         public void Draw()
@@ -46,23 +48,33 @@ namespace MazeGame
                 return false;
             }
             // check valid position
-            return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "B" || Grid[y, x] == "C" || Grid[y, x] == "E" || Grid[y, x] == "D" || Grid[y, x] == "F" || Grid[y, x] == "G";
+            return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "B" || Grid[y, x] == "C" || Grid[y, x] == "E";
         }
-        public int ChallengeCounter()
+        
+        public void ChallengeComplete()
         {
-            challengeCount = challengeCount + 1;
-            return challengeCount;
+            challengeComplete = challengeComplete + 1;
+
         }
-        public bool LevelComplete()
+        public int TotalCompleteChallenges()
         {
-            if (challengeCount == 2)
+            return challengeComplete;
+        }
+        public int ChallengesInRoom()
+        {
+            int Count = 0;
+            for (int y = 0; y < Rows; y++)
             {
-                return true;
+                for (int x = 0; x < Columns; x++)
+                {
+                    string element = Grid[y, x];
+                    if (element == "C")
+                    {
+                        Count = Count + 1;
+                    }
+                }
             }
-            else
-            {
-                return false;
-            }
+            return Count;
         }
     }
 }
